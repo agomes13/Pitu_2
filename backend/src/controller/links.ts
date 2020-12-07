@@ -4,8 +4,13 @@ import {Request, Response} from 'express';
 import {Link} from '../models/link';
 
 //salvando em memoria
-const links : Link[] = [];
-let proxId = 1;
+//const links : Link[] = [];
+//let proxId = 1;
+//fim salvando em memoria
+
+//salvando em banco
+import linksRepository from '../models/links.Repository';
+
 
 function generateCode(){
     // variável criada com let pode ser alterada
@@ -19,14 +24,30 @@ function generateCode(){
     return text;
 }
 
-function postLink(req: Request, res: Response){
+async function postLink(req: Request, res: Response){
     
-    //salvando em memoria
+    
     const link = req.body as Link;
-    link.id =proxId++;
+    //salvando em memoria
+    //link.id =proxId++;
+    //fim salvando em memoria
+
     link.code = generateCode();
     link.hits = 0;
-    links.push(link);
+
+    // salvando em banco
+    const result = await linksRepository.add(link);
+
+    //testando se retornou resultado valido
+    if(!result.id) return res.sendStatus(400);
+
+    // se o resultado estiver correto salvo em link.id
+    link.id = result.id!;
+    // fim salvando em banco
+
+    //salvando em memoria
+    //links.push(link);
+    //fim salvando em memoria
 
     res.status(201).json(link);
 
@@ -35,7 +56,7 @@ function postLink(req: Request, res: Response){
 }
 
 function getLink(req: Request, res: Response){
-
+/*
     const code = req.params.code as string;
     const link =links.find(item => item.code === code);
 
@@ -46,10 +67,12 @@ function getLink(req: Request, res: Response){
 
     //utilizado nos testes iniciais 
     //res.send('getLink');
+    */
 }
 
 function hitLink(req: Request, res: Response){
     const code = req.params.code as string;
+    /*
     const index = links.findIndex(item => item.code === code);
 
     if(index === -1)
@@ -59,10 +82,10 @@ function hitLink(req: Request, res: Response){
         // responsabilizamos por ter algo na variavel 
         links[index].hits!++; 
 
-        res.json(links[index]);
+        res.json(links[index]);       
     }
 
-    
+    */
     //utilizado nos testes iniciais 
     //res.send('hitLink');
 }
