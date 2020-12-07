@@ -55,10 +55,15 @@ async function postLink(req: Request, res: Response){
     //res.send('postLink');
 }
 
-function getLink(req: Request, res: Response){
-/*
+async function getLink(req: Request, res: Response){
+
     const code = req.params.code as string;
-    const link =links.find(item => item.code === code);
+    //salvando em memória 
+    //const link =links.find(item => item.code === code);
+    //fim salvando em memoria
+
+    //salvando em banco
+    const link = await linksRepository.findByCode(code);
 
     if(!link)
         res.sendStatus(404);
@@ -67,14 +72,19 @@ function getLink(req: Request, res: Response){
 
     //utilizado nos testes iniciais 
     //res.send('getLink');
-    */
+
 }
 
-function hitLink(req: Request, res: Response){
+async function hitLink(req: Request, res: Response){
     const code = req.params.code as string;
-    /*
-    const index = links.findIndex(item => item.code === code);
+    // salvando em memoria
+    //const index = links.findIndex(item => item.code === code);
+    //fim salvando em memoria
 
+    //salvando em banco
+    const link = await linksRepository.hit(code);
+    /* 
+    //salvando em memoria
     if(index === -1)
         res.sendStatus(404);
     else{
@@ -84,8 +94,16 @@ function hitLink(req: Request, res: Response){
 
         res.json(links[index]);       
     }
-
+    //fim salvando em memoria
     */
+   if(!link)
+        res.sendStatus(404);
+    else{
+        res.json(link);       
+    }
+
+
+    
     //utilizado nos testes iniciais 
     //res.send('hitLink');
 }

@@ -16,7 +16,7 @@ export interface ILinkModel extends Model<Link, ILinkCreationAttibutes>, Link{}
 
 //fim configurações para o typescript funcionar com sequelize
 
-//configurando a tabela a ser criada
+//configurando a tabela a ser criada, esta regra está entre as tags < >, no caso ILinnkModel
 const LinkModel = database.define<ILinkModel>('link',{
     //definindo o atributo id
     id: {
@@ -28,12 +28,14 @@ const LinkModel = database.define<ILinkModel>('link',{
 
     //definindo o atributo url
     url: {
+        //o valor entre parenteses é o tamanho da string
         type: Sequelize.STRING(255),
         allowNull: false
     },
 
     //definindo o atributo code
     code: {
+        //o valor entre parenteses é o tamanho da string
         type: Sequelize.STRING(20),
         unique: true,
         allowNull:false

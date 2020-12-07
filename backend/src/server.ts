@@ -5,7 +5,11 @@ import database from './database';
 
 const main = async ()=>{
     try {
-        await database.sync({force: true});
+        // para testes com force true que cria as tabelas cada vez que sobe o servidor
+        //await database.sync({force: true});
+        
+        //definitivo sem criar a tabela a cada subida do servidor
+        await database.sync();
         console.log('Database running at 3306');
     } catch (error) {
         console.log('Ops! cocorreu um erro de conexão com banco!', error);
