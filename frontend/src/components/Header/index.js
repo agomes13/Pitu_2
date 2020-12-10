@@ -10,13 +10,7 @@ import Icone from '../../assets/icon_pitu.png';
 
 //usamos as tags <> ... </> para aninhar os componentes que estiverem entre elas
 function Header(props){
-    return(
-        /* //testes
-        <>
-            <p>Header: {props.title}</p>
-            <p>{props.children}</p>
-        </>
-        */
+    return(        
         <>
             <HeaderContainer>
                 <Logo src={Icone} alt='Pitu - Encurtador de URL' />
@@ -26,5 +20,12 @@ function Header(props){
         </>
     )
 }
+
+/* //testes
+        <>
+            <p>Header: {props.title}</p>
+            <p>{props.children}</p>
+        </>
+        */
 
 export default Header;

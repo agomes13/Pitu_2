@@ -8,14 +8,23 @@ import './App.scss';
 //import ReactDOM from 'react-dom'
 import { library } from '@fortawesome/fontawesome-svg-core'
 //import { fab } from '@fortawesome/free-brands-svg-icons'
-import { faCheckSquare } from '@fortawesome/free-solid-svg-icons'
+//antes de criar a statsPage
+//import { faCheckSquare } from '@fortawesome/free-solid-svg-icons'
+
+//depois de criar a statsPage
+import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons'
 //fim fontawesome
 
 //antes de importar o fontawesome
 //library.add(fab, faCheckSquare, faCoffee)
 
 //depois de importar fontawesome awui colocamos os icones que queremos adicionar
-library.add(faCheckSquare)
+//antes de criar a statsPage
+//library.add(faCheckSquare)
+
+//depois de criar a statsPage
+library.add(faExclamationTriangle)
+
 
 
 ReactDOM.render(

@@ -2,7 +2,14 @@ import baseAPI from './api';
 
 class ShortenerService{
     constructor(){
-        this.api = baseAPI('http://localhost:3001/');
+
+        //endereço utilizado em localhost antes de publicar na aws
+        //this.api = baseAPI('http://localhost:3001/');
+
+        //endereço utilizado após publicar na aws, este endereço é importado das vairaveis de ambiente
+        //que estão nos arquivos .env.development e .env.production
+        this.api = baseAPI(process.env.REACT_APP_API);
+
     }
 
     async getLink(code){
@@ -18,7 +25,9 @@ class ShortenerService{
     }
 
     async generate(model){
-        const result = await this.api.post(`links`, model)
+        const result = await this.api.post(`links`, model);
+
+        return result.data;
     }
 }
 

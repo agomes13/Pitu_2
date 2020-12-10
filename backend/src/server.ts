@@ -7,7 +7,7 @@ const main = async ()=>{
     try {
         // para testes com force true que cria as tabelas cada vez que sobe o servidor
         //await database.sync({force: true});
-        
+
         //definitivo sem criar a tabela a cada subida do servidor
         await database.sync();
         console.log('Database running at 3306');
@@ -19,7 +19,11 @@ const main = async ()=>{
 }
 main();
 
-//porta sendo escutada no servidor
-app.listen(3000);
-console.log('Server running at 3000');
+//porta sendo escutada no servidor antes de criar o frontend
+//app.listen(3000);
+
+//porta sendo escutada no servidor depois de criar o frontend
+app.listen(3001);
+
+console.log('Server running at 3001');
 
